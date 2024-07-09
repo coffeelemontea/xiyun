@@ -8,6 +8,17 @@ from sumy.nlp.stemmers import Stemmer
 from sumy.utils import get_stop_words
 import openai
 
+# 尝试加载模型，如果模型未安装则安装模型
+try:
+    nlp = spacy.load('en_core_web_sm')
+except OSError:
+    print("Downloading 'en_core_web_sm' model...")
+    subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
+    nlp = spacy.load('en_core_web_sm')
+
+# 从环境变量中读取 OpenAI API 密钥
+openai.api_key = os.getenv('OPENAI_API_KEY')
+
 openai.api_key = 'YOUR_API_KEY'
 
 app = Flask(__name__)
