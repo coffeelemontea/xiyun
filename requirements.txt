@@ -1,0 +1,7 @@
+flask
+openai
+spacy
+sumy
+flask_sqlalchemy
+
+
